@@ -6,15 +6,13 @@ function updateContent(id, content) {
 // IP, Location, and ISP
 async function getIPLocationISP() {
   try {
-    const ipResponse = await fetch("https://api.ipify.org?format=json");
-    const ipData = await ipResponse.json();
-    const ip = ipData.ip;
-    updateContent("ipAddress", "IP Address: " + ip);
-
     const infoResponse = await fetch(
-      `https://ipinfo.io/${ip}/json?token=a360ac5bbb8e16`
+      `https://ipinfo.io/json?token=a360ac5bbb8e16`
     );
     const infoData = await infoResponse.json();
+
+    const ip = infoData.ip;
+    updateContent("ipAddress", "IP Address: " + ip);
 
     const { city, region, country } = infoData;
     const locationString = `${city}, ${region}, ${country}`;
@@ -48,19 +46,27 @@ var timezoneString =
   timezoneMinutes;
 updateContent("timezone", "Timezone: " + timezoneString);
 
-// User Time
-var localTime = new Date();
-updateContent("userTime", "Local Time: " + localTime.toLocaleTimeString());
-
-// Battery
-if (navigator.getBattery) {
-  navigator.getBattery().then(function (battery) {
-    const level = Math.round(battery.level * 100);
-    updateContent("battery", "Battery Level: " + level + "%");
-  });
-} else {
-  updateContent("battery", "Battery Level: unsupported");
+// User Time - Update every second
+function updateUserTime() {
+  var localTime = new Date();
+  updateContent("userTime", "Local Time: " + localTime.toLocaleTimeString());
 }
+updateUserTime();
+setInterval(updateUserTime, 1000);
+
+// Battery - Update every minute
+function updateBattery() {
+  if (navigator.getBattery) {
+    navigator.getBattery().then(function (battery) {
+      const level = Math.round(battery.level * 100);
+      updateContent("battery", "Battery Level: " + level + "%");
+    });
+  } else {
+    updateContent("battery", "Battery Level: unsupported");
+  }
+}
+updateBattery();
+setInterval(updateBattery, 60000);
 
 // Orientation
 window.addEventListener("orientationchange", function () {
@@ -71,11 +77,15 @@ window.addEventListener("orientationchange", function () {
 var isTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 updateContent("touchScreen", "Touch Screen: " + (isTouchScreen ? "Yes" : "No"));
 
-// Screen Size
-updateContent(
-  "screenSize",
-  "Screen Size: " + screen.width + "x" + screen.height
-);
+// Screen Size - Update every minute
+function updateScreenSize() {
+  updateContent(
+    "screenSize",
+    "Screen Size: " + screen.width + "x" + screen.height
+  );
+}
+updateScreenSize();
+setInterval(updateScreenSize, 60000);
 
 // Incognito Mode
 detectIncognito().then((result) => {
