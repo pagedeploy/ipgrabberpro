@@ -24,101 +24,24 @@
 
     <link rel="stylesheet" href="styles.css" />
     
+    <!--
+    <script src="https://cdn.jsdelivr.net/gh/Joe12387/detectIncognito@main/dist/es5/detectIncognito.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
+    -->
     <script src="incognito.js"></script>
     <script src="uaparser.js"></script>
   </head>
   <body>
-    <section>
-      <h3>This website does not store your information in any way, nor does it allow you to store other people’s information. Your IP is processed using <a href="https://ipinfo.io/" target="_blank">IPinfo</a>, but everything else is done locally on your device. This is for demonstration purposes only and would not be possible without UAParser.js and Joe12387's incognito detector.</h3>
-    </section>
-    
-    <section>
-      <h2>IP Address</h2>
-      <p id="ipAddress">Loading...</p>
-    </section>
+    <canvas id="matrixCanvas"></canvas>
 
     <section>
-      <h2>Location</h2>
-      <p id="location">Loading...</p>
-    </section>
-    
-    <section>
-      <h2>ISP</h2>
-      <p id="isp">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Language</h2>
-      <p id="language">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Timezone</h2>
-      <p id="timezone">Loading...</p>
-    </section>
-
-    <section>
-      <h2>User Time</h2>
-      <p id="userTime">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Battery</h2>
-      <p id="battery">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Orientation</h2>
-      <p id="orientation">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Touch Screen</h2>
-      <p id="touchScreen">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Screen Size</h2>
-      <p id="screenSize">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Incognito Mode</h2>
-      <p id="incognito">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Ad Blocker</h2>
-      <p id="adBlocker">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Platform</h2>
-      <p id="platform">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Browser</h2>
-      <p id="browser">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Operating System</h2>
-      <p id="os">Loading...</p>
-    </section>
-
-    <section>
-      <h2>Device</h2>
-      <p id="device">Loading...</p>
-    </section>
-
-    <section>
-      <h2>User Agent</h2>
-      <p id="userAgent">Loading...</p>
+      <h3>This website serves as a DEMONSTRATION of what can be tracked through device fingerprinting, a technique that combines your browser settings, hardware configurations, and operating system details to uniquely identify you without relying on cookies or personal data. This site does not store your information in any way, nor does it allow you to store other people’s information. Your IP is processed using <a href="https://ipinfo.io/" target="_blank">IPinfo.io</a>, but everything else is done locally on your device. It makes use of <a href="https://uaparser.dev" target="_blank">UAParser.dev</a> and Joe12387's <a href="https://github.com/Joe12387/detectIncognito" target="_blank">incognito detector</a>.</h3>
     </section>
 
     <footer class="footer">&copy; 2023-2026 Sachin Agrawal</footer>
     
+    <script src="metrics.js"></script>
     <script src="script.js"></script>
+    <script src="matrix.js"></script>
   </body>
 </html>
